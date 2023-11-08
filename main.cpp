@@ -1,46 +1,40 @@
-#include <SFML/Graphics.hpp>
+#include "class/GameObject.h"
 
-int main( int argc, char** argv )
-{
+int main( int argc, char **argv ) {
+    
     //Création d'une fenêtre
-    sf::RenderWindow oWindow( sf::VideoMode( 640, 480 ), "SFML" );
+    const sf::Vector2i window_size(700, 800);
+    sf::RenderWindow window(sf::VideoMode(window_size.x, window_size.y), "SFML", sf::Style::Close);
+    window.setFramerateLimit(120);
     
-    //Création d'un cercle de radius 100
-    sf::CircleShape oCircle( 100.f );
-    //A la position 0, 0
-    oCircle.setPosition( 0.f, 0.f );
-    //Et de couleur verte
-    oCircle.setFillColor( sf::Color::Green );
-    
-    
-    //Création d'un rectangle de taille 50, 50
-    sf::RectangleShape oRectangle( sf::Vector2f( 50.f, 50.f ) );
-    //A la position 100, 100
-    oCircle.setPosition( 100.f, 100.f );
-    //Et de couleur rouge
-    oRectangle.setFillColor( sf::Color::Red );
+    //Objects Declaration
+    GameObject rect({200, 200}, {100, 50}, sf::Color::Red);
+    GameObject circle({100, 100}, 50, sf::Color::Green);
     
     //GameLoop
-    while( oWindow.isOpen() )
-    {
+    while ( window.isOpen() ) {
         //EVENT
-        sf::Event oEvent{};
-        while( oWindow.pollEvent( oEvent ) )
-        {
-            if( oEvent.type == sf::Event::Closed )
-                oWindow.close();
+        sf::Event o_event{};
+        while ( window.pollEvent(o_event) ) {
+            if ( o_event.type == sf::Event::KeyPressed ) {
+                rect.setRotation(45);
+            }
+            
+            
+            if ( o_event.type == sf::Event::Closed )
+                window.close();
         }
         
         //UPDATE
         
         //DRAW
-        oWindow.clear();
+        window.clear();
         
-        oWindow.draw( oCircle );
-        oWindow.draw( oRectangle );
+        rect.draw(window);
+        circle.draw(window);
         
-        oWindow.display();
+        window.display();
     }
     
-    return 0;
+    return EXIT_SUCCESS;
 }
