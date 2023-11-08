@@ -11,7 +11,10 @@ link_directories( ${SFML_LIB_DIR} )
 
 add_executable(SFML_GameEngine main.cpp
         class/GameObject.cpp
-        class/GameObject.h)
+        class/GameObject.h
+        class/EventManager.cpp
+        class/EventManager.h
+)
 
 target_link_libraries( ${PROJECT_NAME} sfml-graphics-d sfml-main-d sfml-system-d sfml-window-d )
 
