@@ -3,6 +3,7 @@
 class GameObject {
 private:
     sf::Vector2f position;
+    sf::Vector2f direction;
     sf::Vector2f size;
     sf::Color color;
     sf::Shape *shape;
@@ -12,11 +13,13 @@ public:
     GameObject( sf::Vector2f _position, sf::Vector2f _size, sf::Color _color );   //rectangle
     GameObject( sf::Vector2f _position, float _size, sf::Color _color );          //circle
     
+    void draw( sf::RenderWindow &window );
+    
     void setPosition( sf::Vector2f _position );
     
     sf::Vector2f getPosition();
     
-    void setSize( sf::Vector2f _size );
+    //void setSize( sf::Vector2f _size );
     
     sf::Vector2f getSize();
     
@@ -24,7 +27,12 @@ public:
     
     sf::Color getColor();
     
-    void setRotation( float rotation );
+    void setRotation( float _rotation );
     
-    void draw( sf::RenderWindow &window );
+    
+    void move( float _speed );
+    
+    void setDirection( sf::Vector2f _direction );
+    
+    sf::Vector2f getDirection();
 };

@@ -14,6 +14,11 @@ GameObject::GameObject( sf::Vector2f _position, float _size, sf::Color _color ) 
     shape->setFillColor(_color);
 }
 
+//Draw Shape
+void GameObject::draw( sf::RenderWindow &window ) {
+    window.draw(*shape);
+}
+
 void GameObject::setPosition( sf::Vector2f _position ) {
     position = _position;
     shape->setPosition(position);
@@ -23,9 +28,9 @@ sf::Vector2f GameObject::getPosition() {
     return position;
 }
 
-void GameObject::setSize( sf::Vector2f _size ) {
+/*void GameObject::setSize( sf::Vector2f _size ) {
     size = _size;
-}
+}*/
 
 sf::Vector2f GameObject::getSize() {
     return size;
@@ -40,10 +45,10 @@ sf::Color GameObject::getColor() {
     return color;
 }
 
-void GameObject::draw( sf::RenderWindow &window ) {
-    window.draw(*shape);
-}
-
 void GameObject::setRotation( float rotation ) {
 
+}
+
+sf::Vector2f GameObject::getDirection() {
+    return direction;
 }
