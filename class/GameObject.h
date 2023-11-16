@@ -8,8 +8,9 @@ private:
     sf::Vector2f size;
     sf::Color color;
     sf::Shape *shape;
-    float speed = 300;
+    float speed;
     bool collision = false;
+    bool inCollision = false;
 
 public:
     //Class Constructors
@@ -34,21 +35,21 @@ public:
     
     sf::Vector2f getDirection();
     
+    sf::FloatRect getBounds();
+    
+    //Collisions Methods
+    bool checkCollisions( GameObject& goOther );
+    
+    virtual void onCollisionEnter(GameObject& goOther);
+    
+    virtual void onCollisionStay();
+    
+    virtual void onCollisionExit();
+    
     //Other Methods
     void draw( sf::RenderWindow& window );
     
     void rotate( float _angle );
     
     void move( float deltaTime );
-    
-    //Collisions Methods
-    bool checkCollisions( GameObject& goOther );
-    /*sf::Vector2F GetPosition() { return body.getPosition(); }
-    sf::Vector2f GetHalfSize() { return body.getSize()/ 2.0f; }*/
-    
-    virtual void onCollisionEnter();
-    
-    virtual void onCollisionStay();
-    
-    virtual void onCollisionExit();
 };
